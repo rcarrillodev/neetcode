@@ -16,7 +16,7 @@ class Solution:
             res = target - num
             remaining[res] = i
             print(remaining)
-        return None
+        return []
 
 if __name__ == "__main__":
     # Scenario 1
