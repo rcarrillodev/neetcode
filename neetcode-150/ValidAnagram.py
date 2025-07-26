@@ -1,4 +1,4 @@
-class ValidAnagram:
+class Solution:
     """
     An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
     """
@@ -19,6 +19,6 @@ class ValidAnagram:
     
 if __name__ == "__main__":
     # Example usage
-    solution = ValidAnagram()
+    solution = Solution()
     print(solution.isAnagram("anagram", "nagaram"))  # Output: True
     print(solution.isAnagram("rat", "car"))          # Output: False

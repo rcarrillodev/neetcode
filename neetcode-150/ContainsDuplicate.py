@@ -1,6 +1,6 @@
 from typing import List
 
-class ContainsDuplicate:
+class Solution:
     """
     Given an integer array nums, return true if any value appears more than once in the array, otherwise return false.
     ToDo: This solution relies on manually sorting the list
@@ -15,6 +15,6 @@ class ContainsDuplicate:
 
 if __name__ == "__main__":
     # Example usage
-    solution = ContainsDuplicate()
+    solution = Solution()
     print(solution.hasDuplicate([1, 2, 3, 4]))  # Output: False
     print(solution.hasDuplicate([1, 2, 3, 1]))  # Output: True
