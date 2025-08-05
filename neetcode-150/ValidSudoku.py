@@ -10,53 +10,46 @@ class Solution:
     Return true if the Sudoku board is valid, otherwise return false
     """
 
-    def isValidSudoku(self, board:List[List[str]]):
-        
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        cols = [0] * 9
+        rows = [0] * 9
+        boxes = [0] * 9
+
         for row in range(9):
-            exist = set()
             for col in range(9):
-                num = board[row][col]
-                if num == '.':
+                if board[row][col] == '.':
                     continue
-                if num in exist:
+                val = int(board[row][col]) -1
+                
+                if (1<<val)&rows[row]:
+                    for r in rows:
+                        print(bin(r))
                     return False
-                exist.add(num)
-            #print(exist)
-        for row in range(9):
-            exist = set()
-            for col in range(9):
-                num = board[col][row]
-                if num == '.':
-                    continue
-                if num in exist:
+                if (1<<val)&cols[col]:
+                    for c in cols:
+                        print(bin(c))
                     return False
-        for box in range(9):
-            exist=set()
-            for r in range(3):
-                for c in range(3):
-                    row = (box//3)*3+r
-                    col = (box%3)*3+c
-                    num = board[col][row]
-                    if num == '.':
-                        continue
-                    print(num)
-                    if num in exist:
-                        return False
-                    exist.add(num)
+                if (1<<val) & boxes[(row//3) * 3 + (col//3)]:
+                    for b in boxes:
+                        print(bin(b))
+                    return False
+                rows[row] |= (1<<val)
+                cols[col] |= (1<<val)                
+                boxes[(row//3) * 3 + (col//3)] |= (1<<val)
         return True
 '''
 +-------+-------+-------+
-| 1 2 . | . 3 . | . . . |
-| 4 . . | 5 . . | . . . |
-| . 9 8 | . . . | . . 3 |
+| . . 4 | . . . | 6 3 . |
+| . . . | . . . | . . . |
+| 5 . . | . . . | . 9 . |
 +-------+-------+-------+
-| 5 . . | . 6 . | . . 4 |
-| . . . | 8 . 3 | . . 5 |
-| 7 . . | . 2 . | . . 6 |
+| . . . | 5 6 . | . . . |
+| 4 . 3 | . . . | . . 1 |
+| . . . | 7 . . | . . . |
 +-------+-------+-------+
-| . . . | . . . | 2 . . |
-| . . . | 4 1 9 | . . 8 |
-| . . . | . 8 . | . 7 9 |
+| . . . | 5 . . | . . . |
+| . . . | . . . | . . . |
+| . . . | . . . | . . . |
 +-------+-------+-------+
 '''
 
@@ -65,5 +58,4 @@ if __name__ == "__main__":
     
     sol = Solution().isValidSudoku(board)
     print (sol)
-    assert sol is True
     
